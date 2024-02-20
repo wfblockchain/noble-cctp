@@ -18,14 +18,15 @@ package types
 // DONTCOVER
 
 import (
+	errorof "cosmossdk.io/errors"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
 // x/cctp module sentinel errors
 var (
-	ErrUnauthorized                     = sdkerrors.Register(ModuleName, 30, "unauthorized")
-	ErrMint                             = sdkerrors.Register(ModuleName, 31, "tokens can not be minted")
-	ErrBurn                             = sdkerrors.Register(ModuleName, 32, "tokens can not be burned")
+	ErrUnauthorized                     = errorof.Register(ModuleName, 30, "unauthorized")
+	ErrMint                             = errorof.Register(ModuleName, 31, "tokens can not be minted")
+	ErrBurn                             = errorof.Register(ModuleName, 32, "tokens can not be burned")
 	ErrAttesterAlreadyFound             = sdkerrors.Register(ModuleName, 33, "attester is already present")
 	ErrAuthorityNotSet                  = sdkerrors.Register(ModuleName, 34, "authority not set")
 	ErrMalformedField                   = sdkerrors.Register(ModuleName, 35, "field cannot be empty or nil")

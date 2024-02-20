@@ -18,11 +18,12 @@ package types
 import (
 	"testing"
 
-	sdkerrors "cosmossdk.io/errors"
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/stretchr/testify/require"
 	"github.com/wfblockchain/noble-cctp/testutil/sample"
 )
 
+// sdkerrors "cosmossdk.io/errors"
 func TestMsgPauseSendingAndReceivingMessages_ValidateBasic(t *testing.T) {
 	tests := []struct {
 		name string

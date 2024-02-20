@@ -18,6 +18,7 @@ package keeper
 import (
 	"context"
 
+	errorof "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/wfblockchain/noble-cctp/x/cctp/types"
@@ -28,12 +29,12 @@ func (k msgServer) AddRemoteTokenMessenger(goCtx context.Context, msg *types.Msg
 
 	owner := k.GetOwner(ctx)
 	if owner != msg.From {
-		return nil, sdkerrors.Wrapf(types.ErrUnauthorized, "this message sender cannot add remote token messengers")
+		return nil, errorof.Wrapf(types.ErrUnauthorized, "this message sender cannot add remote token messengers")
 	}
 
 	_, found := k.GetRemoteTokenMessenger(ctx, msg.DomainId)
 	if found {
-		return nil, sdkerrors.Wrapf(types.ErrRemoteTokenMessengerAlreadyFound, "a remote token messenger for this domain already exists")
+		return nil, errorof.Wrapf(types.ErrRemoteTokenMessengerAlreadyFound, "a remote token messenger for this domain already exists")
 	}
 
 	if len(msg.Address) != 32 {
