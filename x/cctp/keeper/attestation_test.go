@@ -24,10 +24,10 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/circlefin/noble-cctp/x/cctp/keeper"
-	"github.com/circlefin/noble-cctp/x/cctp/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/stretchr/testify/require"
+	"github.com/wfblockchain/noble-cctp/x/cctp/keeper"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
 func TestVerifyAttestationSignaturesHappyPath(t *testing.T) {

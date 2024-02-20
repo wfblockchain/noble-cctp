@@ -20,12 +20,12 @@ import (
 	"testing"
 
 	"cosmossdk.io/math"
-	keepertest "github.com/circlefin/noble-cctp/testutil/keeper"
-	"github.com/circlefin/noble-cctp/testutil/nullify"
-	"github.com/circlefin/noble-cctp/x/cctp"
-	"github.com/circlefin/noble-cctp/x/cctp/types"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	keepertest "github.com/wfblockchain/noble-cctp/testutil/keeper"
+	"github.com/wfblockchain/noble-cctp/testutil/nullify"
+	"github.com/wfblockchain/noble-cctp/x/cctp"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
 func TestGenesisHappyPath(t *testing.T) {

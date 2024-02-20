@@ -18,7 +18,7 @@ package keeper_test
 import (
 	"testing"
 
-	keepertest "github.com/circlefin/noble-cctp/testutil/keeper"
+	keepertest "github.com/wfblockchain/noble-cctp/testutil/keeper"
 )
 
 func TestLogger(t *testing.T) {

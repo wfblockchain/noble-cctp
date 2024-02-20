@@ -16,7 +16,7 @@
 package keeper
 
 import (
-	"github.com/circlefin/noble-cctp/x/cctp/types"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
 type msgServer struct {

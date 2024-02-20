@@ -21,20 +21,21 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"cosmossdk.io/core/appmodule"
 	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/spf13/cobra"
 
 	abci "github.com/cometbft/cometbft/abci/types"
 
-	"github.com/circlefin/noble-cctp/x/cctp/client/cli"
-	"github.com/circlefin/noble-cctp/x/cctp/keeper"
-	"github.com/circlefin/noble-cctp/x/cctp/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
 	cdctypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
+	"github.com/wfblockchain/noble-cctp/x/cctp/client/cli"
+	"github.com/wfblockchain/noble-cctp/x/cctp/keeper"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
 var (
@@ -131,20 +132,43 @@ func NewAppModule(
 }
 
 // Deprecated: use RegisterServices
-func (am AppModule) Route() sdk.Route { return sdk.Route{} }
+// func (am AppModule) Route() sdk.Route { return sdk.Route{} }
 
 // Deprecated: use RegisterServices
-func (AppModule) QuerierRoute() string { return types.RouterKey }
+// func (AppModule) QuerierRoute() string { return types.RouterKey }
 
 // Deprecated: use RegisterServices
-func (am AppModule) LegacyQuerierHandler(_ *codec.LegacyAmino) sdk.Querier {
-	return nil
-}
+// func (am AppModule) LegacyQuerierHandler(_ *codec.LegacyAmino) sdk.Querier {
+// 	return nil
+// }
 
 // RegisterServices registers a gRPC query service to respond to the module-specific gRPC queries
+// func (am AppModule) RegisterServices(cfg module.Configurator) {
+// 	types.RegisterMsgServer(cfg.MsgServer(), keeper.NewMsgServerImpl(am.keeper))
+// 	types.RegisterQueryServer(cfg.QueryServer(), am.keeper)
+// }
+
+// // RegisterInvariants registers the invariants of the module. If an invariant deviates from its predicted value, the InvariantRegistry triggers appropriate logic (most often the chain will be halted)
+// func (am AppModule) RegisterInvariants(_ sdk.InvariantRegistry) {}
+
+var _ appmodule.AppModule = AppModule{}
+
+// IsOnePerModuleType implements the depinject.OnePerModuleType interface.
+func (am AppModule) IsOnePerModuleType() {}
+
+// IsAppModule implements the appmodule.AppModule interface.
+func (am AppModule) IsAppModule() {}
+
+// RegisterServices registers module services.
 func (am AppModule) RegisterServices(cfg module.Configurator) {
 	types.RegisterMsgServer(cfg.MsgServer(), keeper.NewMsgServerImpl(am.keeper))
 	types.RegisterQueryServer(cfg.QueryServer(), am.keeper)
+
+	m := keeper.NewMigrator(am.keeper)
+	err := cfg.RegisterMigration(types.ModuleName, 1, m.Migrate1to2)
+	if err != nil {
+		panic(fmt.Sprintf("failed to migrate x/%s from version 1 to 2: %v", types.ModuleName, err))
+	}
 }
 
 // RegisterInvariants registers the invariants of the module. If an invariant deviates from its predicted value, the InvariantRegistry triggers appropriate logic (most often the chain will be halted)

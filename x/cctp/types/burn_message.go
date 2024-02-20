@@ -19,8 +19,8 @@ import (
 	"encoding/binary"
 	"math/big"
 
+	sdkerrors "cosmossdk.io/errors"
 	"cosmossdk.io/math"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
 // Parse parses a byte array into a BurnMessage struct

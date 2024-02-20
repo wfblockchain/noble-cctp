@@ -18,9 +18,9 @@ package cli
 import (
 	"fmt"
 
-	"github.com/circlefin/noble-cctp/x/cctp/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/spf13/cobra"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
 // GetQueryCmd returns the cli query commands for this module

@@ -18,11 +18,11 @@ package keeper_test
 import (
 	"testing"
 
-	"github.com/circlefin/noble-cctp/testutil/sample"
+	"github.com/wfblockchain/noble-cctp/testutil/sample"
 
 	"github.com/stretchr/testify/require"
 
-	keepertest "github.com/circlefin/noble-cctp/testutil/keeper"
+	keepertest "github.com/wfblockchain/noble-cctp/testutil/keeper"
 )
 
 func TestOwner(t *testing.T) {

@@ -18,7 +18,7 @@ package types
 import (
 	"testing"
 
-	"github.com/circlefin/noble-cctp/testutil/sample"
+	"github.com/wfblockchain/noble-cctp/testutil/sample"
 
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/stretchr/testify/require"

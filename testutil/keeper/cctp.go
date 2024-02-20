@@ -18,8 +18,6 @@ package keeper
 import (
 	"testing"
 
-	"github.com/circlefin/noble-cctp/x/cctp/keeper"
-	"github.com/circlefin/noble-cctp/x/cctp/types"
 	tmdb "github.com/cometbft/cometbft-db"
 	"github.com/cometbft/cometbft/libs/log"
 	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
@@ -30,9 +28,11 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	typesparams "github.com/cosmos/cosmos-sdk/x/params/types"
 	"github.com/stretchr/testify/require"
+	"github.com/wfblockchain/noble-cctp/x/cctp/keeper"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
-func CctpKeeperWithKey(t testing.TB, storeKey sdk.StoreKey) (*keeper.Keeper, sdk.Context) {
+func CctpKeeperWithKey(t testing.TB, storeKey storetypes.StoreKey) (*keeper.Keeper, sdk.Context) {
 	db := tmdb.NewMemDB()
 	stateStore := store.NewCommitMultiStore(db)
 	stateStore.MountStoreWithDB(storeKey, storetypes.StoreTypeIAVL, db)

@@ -19,9 +19,9 @@ import (
 	"testing"
 
 	"cosmossdk.io/math"
-	"github.com/circlefin/noble-cctp/x/cctp/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/stretchr/testify/require"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
 // BurnMessage -> bytes -> BurnMessage -> bytes

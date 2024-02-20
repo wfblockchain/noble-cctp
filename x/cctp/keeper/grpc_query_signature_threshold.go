@@ -18,8 +18,8 @@ package keeper
 import (
 	"context"
 
-	"github.com/circlefin/noble-cctp/x/cctp/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

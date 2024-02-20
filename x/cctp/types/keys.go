@@ -35,6 +35,8 @@ const (
 	// MemStoreKey defines the in-memory store key
 	MemStoreKey = "mem_" + StoreKey
 
+	DoneByte = 0x1
+
 	BurningAndMintingPausedKey           = "BurningAndMintingPaused/value/"
 	MaxMessageBodySizeKey                = "MaxMessageBodySize/value/"
 	NextAvailableNonceKey                = "NextAvailableNonce/value/"

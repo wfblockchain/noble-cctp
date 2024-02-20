@@ -21,7 +21,7 @@ import (
 	sdkerrors "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/circlefin/noble-cctp/x/cctp/types"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
 func (k msgServer) UnpauseBurningAndMinting(goCtx context.Context, msg *types.MsgUnpauseBurningAndMinting) (*types.MsgUnpauseBurningAndMintingResponse, error) {

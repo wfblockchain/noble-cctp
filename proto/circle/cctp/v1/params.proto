@@ -19,7 +19,7 @@ package circle.cctp.v1;
 
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/circlefin/noble-cctp/x/cctp/types";
+option go_package = "github.com/wfblockchain/noble-cctp/x/cctp/types";
 
 /**
  * Params defines the parameters for the module.

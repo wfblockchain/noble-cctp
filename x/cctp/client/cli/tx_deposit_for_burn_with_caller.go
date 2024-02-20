@@ -19,13 +19,13 @@ import (
 	"fmt"
 	"strconv"
 
+	sdkerrors "cosmossdk.io/errors"
 	"cosmossdk.io/math"
-	"github.com/circlefin/noble-cctp/x/cctp/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/spf13/cobra"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
 func CmdDepositForBurnWithCaller() *cobra.Command {

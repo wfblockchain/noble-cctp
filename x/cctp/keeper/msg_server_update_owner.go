@@ -18,7 +18,7 @@ package keeper
 import (
 	"context"
 
-	"github.com/circlefin/noble-cctp/x/cctp/types"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 
 	sdkerrors "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"

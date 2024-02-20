@@ -19,7 +19,7 @@ import (
 	"encoding/hex"
 	"strings"
 
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	sdkerrors "cosmossdk.io/errors"
 )
 
 // RemoteTokenPadded returns the remote token as a byte array, padded to 32 bytes

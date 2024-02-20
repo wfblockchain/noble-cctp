@@ -19,9 +19,9 @@ import (
 	"bytes"
 	"context"
 
-	"github.com/circlefin/noble-cctp/x/cctp/types"
+	sdkerrors "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
 func (k msgServer) DepositForBurnWithCaller(goCtx context.Context, msg *types.MsgDepositForBurnWithCaller) (*types.MsgDepositForBurnWithCallerResponse, error) {

@@ -20,13 +20,13 @@ import (
 
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	keepertest "github.com/circlefin/noble-cctp/testutil/keeper"
-	"github.com/circlefin/noble-cctp/testutil/sample"
-	"github.com/circlefin/noble-cctp/x/cctp/keeper"
-	"github.com/circlefin/noble-cctp/x/cctp/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/stretchr/testify/require"
+	keepertest "github.com/wfblockchain/noble-cctp/testutil/keeper"
+	"github.com/wfblockchain/noble-cctp/testutil/sample"
+	"github.com/wfblockchain/noble-cctp/x/cctp/keeper"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
 var tokenMessenger = make([]byte, 32)

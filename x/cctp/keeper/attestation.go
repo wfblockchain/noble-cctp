@@ -21,9 +21,9 @@ import (
 	"math/big"
 
 	sdkerrors "cosmossdk.io/errors"
-	"github.com/circlefin/noble-cctp/x/cctp/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
 const (

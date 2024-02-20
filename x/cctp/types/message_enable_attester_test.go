@@ -18,9 +18,9 @@ package types
 import (
 	"testing"
 
-	"github.com/circlefin/noble-cctp/testutil/sample"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/stretchr/testify/require"
+	"github.com/wfblockchain/noble-cctp/testutil/sample"
 )
 
 func TestMsgEnableAttester_ValidateBasic(t *testing.T) {

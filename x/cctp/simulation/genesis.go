@@ -16,11 +16,11 @@
 package simulation
 
 import (
-	"github.com/circlefin/noble-cctp/x/cctp/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/cosmos/cosmos-sdk/types/simulation"
 	bankTypes "github.com/cosmos/cosmos-sdk/x/bank/types"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
 func GenerateGenesisState(simState *module.SimulationState) {

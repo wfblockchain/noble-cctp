@@ -22,7 +22,7 @@ import (
 	sdkerrors "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/circlefin/noble-cctp/x/cctp/types"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
 func (k msgServer) SendMessageWithCaller(goCtx context.Context, msg *types.MsgSendMessageWithCaller) (*types.MsgSendMessageWithCallerResponse, error) {

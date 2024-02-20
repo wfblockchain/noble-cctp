@@ -18,8 +18,8 @@ package types_test
 import (
 	"testing"
 
-	"github.com/circlefin/noble-cctp/x/cctp/types"
 	"github.com/stretchr/testify/require"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
 func TestRemoteTokenPadded(t *testing.T) {

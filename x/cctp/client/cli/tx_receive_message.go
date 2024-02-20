@@ -16,12 +16,12 @@
 package cli
 
 import (
-	"github.com/circlefin/noble-cctp/x/cctp/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/spf13/cobra"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
 func CmdReceiveMessage() *cobra.Command {

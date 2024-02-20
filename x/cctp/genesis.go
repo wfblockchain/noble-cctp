@@ -17,9 +17,9 @@
 package cctp
 
 import (
-	"github.com/circlefin/noble-cctp/x/cctp/keeper"
-	"github.com/circlefin/noble-cctp/x/cctp/types"
-	_ "github.com/cosmos/cosmos-sdk/types/errors" // sdkerrors
+	_ "cosmossdk.io/errors" // sdkerrors
+	"github.com/wfblockchain/noble-cctp/x/cctp/keeper"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )

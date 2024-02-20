@@ -16,8 +16,8 @@
 package keeper
 
 import (
-	"github.com/circlefin/noble-cctp/x/cctp/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
 // DeletePendingOwner deletes the pending owner of the CCTP module from state.

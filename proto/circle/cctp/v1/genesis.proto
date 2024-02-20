@@ -28,7 +28,7 @@ import "circle/cctp/v1/signature_threshold.proto";
 import "circle/cctp/v1/token_pair.proto";
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/circlefin/noble-cctp/x/cctp/types";
+option go_package = "github.com/wfblockchain/noble-cctp/x/cctp/types";
 
 // GenesisState defines the cctp module's genesis state.
 message GenesisState {

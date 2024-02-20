@@ -21,9 +21,9 @@ import (
 	"strings"
 
 	sdkerrors "cosmossdk.io/errors"
-	"github.com/circlefin/noble-cctp/x/cctp/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/bech32"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 	fiattokenfactorytypes "github.com/wfblockchain/noble-fiattokenfactory/x/fiattokenfactory/types"
 )
 

@@ -18,9 +18,9 @@ package keeper_test
 import (
 	"testing"
 
-	keepertest "github.com/circlefin/noble-cctp/testutil/keeper"
-	"github.com/circlefin/noble-cctp/x/cctp/types"
 	"github.com/stretchr/testify/require"
+	keepertest "github.com/wfblockchain/noble-cctp/testutil/keeper"
+	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
 func TestSendingAndReceivingMessagesPaused(t *testing.T) {

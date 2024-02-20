@@ -18,7 +18,7 @@ package types
 import (
 	"encoding/binary"
 
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	sdkerrors "cosmossdk.io/errors"
 )
 
 // Parse parses a byte array into a Message struct
