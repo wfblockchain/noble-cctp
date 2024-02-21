@@ -28,7 +28,7 @@ func (am AppModule) GenerateGenesisState(input *module.SimulationState) {
 	simulation.GenerateGenesisState(input)
 }
 
-func (am AppModule) ProposalContents(_ module.SimulationState) []simTypes.WeightedProposalContent {
+func (am AppModule) ProposalContents(_ module.SimulationState) []simTypes.WeightedProposalMsg {
 	// We don't have any governance proposals in the CCTP module.
 	return nil
 }

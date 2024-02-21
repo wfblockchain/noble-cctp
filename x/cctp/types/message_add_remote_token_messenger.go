@@ -57,7 +57,7 @@ func (msg *MsgAddRemoteTokenMessenger) GetSignBytes() []byte {
 func (msg *MsgAddRemoteTokenMessenger) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.From)
 	if err != nil {
-		return sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "invalid from address (%s)", err)
+		return errorof.Wrapf(sdkerrors.ErrInvalidAddress, "invalid from address (%s)", err)
 	}
 	return nil
 }

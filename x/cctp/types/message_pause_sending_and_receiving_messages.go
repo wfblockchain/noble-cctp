@@ -16,6 +16,7 @@
 package types
 
 import (
+	errorof "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
@@ -54,7 +55,7 @@ func (msg *MsgPauseSendingAndReceivingMessages) GetSignBytes() []byte {
 func (msg *MsgPauseSendingAndReceivingMessages) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.From)
 	if err != nil {
-		return sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "invalid from address (%s)", err)
+		return errorof.Wrapf(sdkerrors.ErrInvalidAddress, "invalid from address (%s)", err)
 	}
 	return nil
 }
