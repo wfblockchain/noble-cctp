@@ -18,8 +18,9 @@ package keeper_test
 import (
 	"testing"
 
-	"github.com/cosmos/cosmos-sdk/store/prefix"
+	"cosmossdk.io/store/prefix"
 
+	sdktypes "cosmossdk.io/store/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/stretchr/testify/require"
@@ -147,7 +148,7 @@ func TestUsedNonceQueryPaginated(t *testing.T) {
 }
 
 func TestUsedNonceQueryPaginatedInvalidState(t *testing.T) {
-	storeKey := sdk.NewKVStoreKey(types.StoreKey)
+	storeKey := sdktypes.NewKVStoreKey(types.StoreKey)
 	keeper, ctx := keepertest.CctpKeeperWithKey(t, storeKey)
 
 	store := prefix.NewStore(ctx.KVStore(storeKey), types.KeyPrefix(types.UsedNonceKeyPrefix))

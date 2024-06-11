@@ -16,6 +16,7 @@
 package simulation
 
 import (
+	sdkmath "cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/cosmos/cosmos-sdk/types/simulation"
@@ -50,7 +51,7 @@ func GenerateGenesisState(simState *module.SimulationState) {
 	for i := 0; i < len(bankGenesis.Balances); i++ {
 		balance := bankGenesis.Balances[i]
 		if balance.Address == user.Address.String() {
-			coin := sdk.NewCoin("uusdc", sdk.NewInt(simState.Rand.Int63()))
+			coin := sdk.NewCoin("uusdc", sdkmath.NewInt(simState.Rand.Int63()))
 			balance.Coins = balance.Coins.Add(coin)
 
 			bankGenesis.Balances[i] = balance

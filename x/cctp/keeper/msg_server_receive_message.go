@@ -21,6 +21,7 @@ import (
 	"strings"
 
 	sdkerrors "cosmossdk.io/errors"
+	"cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/bech32"
 	"github.com/wfblockchain/noble-cctp/x/cctp/types"
@@ -131,7 +132,7 @@ func (k msgServer) ReceiveMessage(goCtx context.Context, msg *types.MsgReceiveMe
 			Address: mintRecipient,
 			Amount: sdk.Coin{
 				Denom:  strings.ToLower(tokenPair.LocalToken),
-				Amount: sdk.NewIntFromBigInt(burnMessage.Amount.BigInt()),
+				Amount: math.NewIntFromBigInt(burnMessage.Amount.BigInt()),
 			},
 		}
 		_, err = k.fiattokenfactory.Mint(ctx, &msgMint)

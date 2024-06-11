@@ -16,9 +16,10 @@
 package keeper
 
 import (
-	"github.com/cosmos/cosmos-sdk/store/prefix"
+	"cosmossdk.io/store/prefix"
 	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 
+	sdktypes "cosmossdk.io/store/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
@@ -45,7 +46,7 @@ func (k Keeper) SetPerMessageBurnLimit(ctx sdk.Context, limit types.PerMessageBu
 // GetAllMessageBurnLimit gets all PerMessageBurnLimits from the store
 func (k Keeper) GetAllPerMessageBurnLimits(ctx sdk.Context) (list []types.PerMessageBurnLimit) {
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.PerMessageBurnLimitKeyPrefix))
-	iterator := sdk.KVStorePrefixIterator(store, []byte{})
+	iterator := sdktypes.KVStorePrefixIterator(store, []byte{})
 
 	defer iterator.Close()
 

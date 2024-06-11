@@ -18,9 +18,10 @@ package keeper_test
 import (
 	"testing"
 
-	"github.com/cosmos/cosmos-sdk/store/prefix"
+	"cosmossdk.io/store/prefix"
 
 	"cosmossdk.io/math"
+	sdktypes "cosmossdk.io/store/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"google.golang.org/grpc/codes"
@@ -149,7 +150,7 @@ func TestPerMessageBurnLimitQueryPaginated(t *testing.T) {
 }
 
 func TestPerMessageBurnLimitQueryPaginatedInvalidState(t *testing.T) {
-	storeKey := sdk.NewKVStoreKey(types.StoreKey)
+	storeKey := sdktypes.NewKVStoreKey(types.StoreKey)
 	keeper, ctx := keepertest.CctpKeeperWithKey(t, storeKey)
 
 	store := prefix.NewStore(ctx.KVStore(storeKey), types.KeyPrefix(types.PerMessageBurnLimitKeyPrefix))

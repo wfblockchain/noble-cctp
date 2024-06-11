@@ -33,7 +33,7 @@ import (
 	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 )
 
-func WeightedOperations(_ codec.JSONCodec, accountKeeper types.AccountKeeper, bankKeeper types.BankKeeper, keeper *keeper.Keeper) simulation.WeightedOperations {
+func WeightedOperations(_ codec.JSONCodec, accountKeeper simulation.AccountKeeper, bankKeeper types.BankKeeper, keeper *keeper.Keeper) simulation.WeightedOperations {
 	return simulation.WeightedOperations{
 		simulation.NewWeightedOperation(
 			1, SimulateAcceptOwner(accountKeeper, keeper),
@@ -107,7 +107,7 @@ func WeightedOperations(_ codec.JSONCodec, accountKeeper types.AccountKeeper, ba
 	}
 }
 
-func SimulateAcceptOwner(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateAcceptOwner(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, _ string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		owner, ok := simTypes.FindAccount(accounts, sdk.MustAccAddressFromBech32(keeper.GetOwner(ctx)))
 		if !ok {
@@ -128,7 +128,6 @@ func SimulateAcceptOwner(accountKeeper types.AccountKeeper, keeper *keeper.Keepe
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           updateMsg,
-			MsgType:       updateMsg.Type(),
 			Context:       ctx,
 			SimAccount:    owner,
 			AccountKeeper: accountKeeper,
@@ -140,7 +139,6 @@ func SimulateAcceptOwner(accountKeeper types.AccountKeeper, keeper *keeper.Keepe
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           acceptMsg,
-			MsgType:       acceptMsg.Type(),
 			Context:       ctx,
 			SimAccount:    newOwner,
 			AccountKeeper: accountKeeper,
@@ -154,7 +152,7 @@ func SimulateAcceptOwner(accountKeeper types.AccountKeeper, keeper *keeper.Keepe
 	}
 }
 
-func SimulateAddRemoteTokenMessenger(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateAddRemoteTokenMessenger(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, _ string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		domain := r.Uint32()
 		tokenMessenger := make([]byte, 32)
@@ -177,7 +175,6 @@ func SimulateAddRemoteTokenMessenger(accountKeeper types.AccountKeeper, keeper *
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       msg.Type(),
 			Context:       ctx,
 			SimAccount:    owner,
 			AccountKeeper: accountKeeper,
@@ -188,7 +185,7 @@ func SimulateAddRemoteTokenMessenger(accountKeeper types.AccountKeeper, keeper *
 	}
 }
 
-func SimulateDepositForBurn(accountKeeper types.AccountKeeper, bankKeeper types.BankKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateDepositForBurn(accountKeeper simulation.AccountKeeper, bankKeeper types.BankKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, _ string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		if paused, _ := keeper.GetBurningAndMintingPaused(ctx); paused.Paused {
 			return simTypes.NoOpMsg(types.ModuleName, "", ""), nil, nil
@@ -228,7 +225,6 @@ func SimulateDepositForBurn(accountKeeper types.AccountKeeper, bankKeeper types.
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           burn,
-			MsgType:       burn.Type(),
 			Context:       ctx,
 			SimAccount:    caller,
 			AccountKeeper: accountKeeper,
@@ -239,7 +235,7 @@ func SimulateDepositForBurn(accountKeeper types.AccountKeeper, bankKeeper types.
 	}
 }
 
-func SimulateDepositForBurnWithCaller(accountKeeper types.AccountKeeper, bankKeeper types.BankKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateDepositForBurnWithCaller(accountKeeper simulation.AccountKeeper, bankKeeper types.BankKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, _ string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		if paused, _ := keeper.GetBurningAndMintingPaused(ctx); paused.Paused {
 			return simTypes.NoOpMsg(types.ModuleName, "", ""), nil, nil
@@ -282,7 +278,6 @@ func SimulateDepositForBurnWithCaller(accountKeeper types.AccountKeeper, bankKee
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       msg.Type(),
 			Context:       ctx,
 			SimAccount:    caller,
 			AccountKeeper: accountKeeper,
@@ -293,7 +288,7 @@ func SimulateDepositForBurnWithCaller(accountKeeper types.AccountKeeper, bankKee
 	}
 }
 
-func SimulateDisableAttester(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateDisableAttester(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, chainID string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		for i := 0; i < r.Intn(101); i++ {
 			enableFunc := SimulateEnableAttester(accountKeeper, keeper)
@@ -321,7 +316,6 @@ func SimulateDisableAttester(accountKeeper types.AccountKeeper, keeper *keeper.K
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       msg.Type(),
 			Context:       ctx,
 			SimAccount:    attesterManager,
 			AccountKeeper: accountKeeper,
@@ -332,7 +326,7 @@ func SimulateDisableAttester(accountKeeper types.AccountKeeper, keeper *keeper.K
 	}
 }
 
-func SimulateEnableAttester(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateEnableAttester(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, _ string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		key, _ := crypto.GenerateKey()
 		attester := "0x" + common.Bytes2Hex(
@@ -355,7 +349,6 @@ func SimulateEnableAttester(accountKeeper types.AccountKeeper, keeper *keeper.Ke
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       msg.Type(),
 			Context:       ctx,
 			SimAccount:    attesterManager,
 			AccountKeeper: accountKeeper,
@@ -366,7 +359,7 @@ func SimulateEnableAttester(accountKeeper types.AccountKeeper, keeper *keeper.Ke
 	}
 }
 
-func SimulateLinkTokenPair(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateLinkTokenPair(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, _ string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		domain := r.Uint32()
 		token := make([]byte, 32)
@@ -390,7 +383,6 @@ func SimulateLinkTokenPair(accountKeeper types.AccountKeeper, keeper *keeper.Kee
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       msg.Type(),
 			Context:       ctx,
 			SimAccount:    tokenController,
 			AccountKeeper: accountKeeper,
@@ -401,7 +393,7 @@ func SimulateLinkTokenPair(accountKeeper types.AccountKeeper, keeper *keeper.Kee
 	}
 }
 
-func SimulatePausingOfBurningAndMinting(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulatePausingOfBurningAndMinting(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, _ string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		paused, ok := keeper.GetBurningAndMintingPaused(ctx)
 		if !ok {
@@ -432,7 +424,6 @@ func SimulatePausingOfBurningAndMinting(accountKeeper types.AccountKeeper, keepe
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       sdk.MsgTypeURL(msg),
 			Context:       ctx,
 			SimAccount:    pauser,
 			AccountKeeper: accountKeeper,
@@ -443,7 +434,7 @@ func SimulatePausingOfBurningAndMinting(accountKeeper types.AccountKeeper, keepe
 	}
 }
 
-func SimulatePausingOfSendingAndReceiving(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulatePausingOfSendingAndReceiving(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, _ string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		paused, ok := keeper.GetSendingAndReceivingMessagesPaused(ctx)
 		if !ok {
@@ -474,7 +465,6 @@ func SimulatePausingOfSendingAndReceiving(accountKeeper types.AccountKeeper, kee
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       sdk.MsgTypeURL(msg),
 			Context:       ctx,
 			SimAccount:    pauser,
 			AccountKeeper: accountKeeper,
@@ -485,7 +475,7 @@ func SimulatePausingOfSendingAndReceiving(accountKeeper types.AccountKeeper, kee
 	}
 }
 
-func SimulateReceiveMessage(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateReceiveMessage(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, _ string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		if paused, _ := keeper.GetSendingAndReceivingMessagesPaused(ctx); paused.Paused {
 			return simTypes.NoOpMsg(types.ModuleName, "", ""), nil, nil
@@ -538,7 +528,6 @@ func SimulateReceiveMessage(accountKeeper types.AccountKeeper, keeper *keeper.Ke
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       sdk.MsgTypeURL(msg),
 			Context:       ctx,
 			SimAccount:    caller,
 			AccountKeeper: accountKeeper,
@@ -549,7 +538,7 @@ func SimulateReceiveMessage(accountKeeper types.AccountKeeper, keeper *keeper.Ke
 	}
 }
 
-func SimulateRemoveRemoteTokenMessenger(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateRemoveRemoteTokenMessenger(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, chainID string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		for i := 0; i < r.Intn(101); i++ {
 			addFunc := SimulateAddRemoteTokenMessenger(accountKeeper, keeper)
@@ -577,7 +566,6 @@ func SimulateRemoveRemoteTokenMessenger(accountKeeper types.AccountKeeper, keepe
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       msg.Type(),
 			Context:       ctx,
 			SimAccount:    owner,
 			AccountKeeper: accountKeeper,
@@ -588,7 +576,7 @@ func SimulateRemoveRemoteTokenMessenger(accountKeeper types.AccountKeeper, keepe
 	}
 }
 
-func SimulateReplaceDepositForBurn(accountKeeper types.AccountKeeper, bankKeeper types.BankKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateReplaceDepositForBurn(accountKeeper simulation.AccountKeeper, bankKeeper types.BankKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, chainID string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		if paused, _ := keeper.GetSendingAndReceivingMessagesPaused(ctx); paused.Paused {
 			return simTypes.NoOpMsg(types.ModuleName, "", ""), nil, nil
@@ -675,7 +663,6 @@ func SimulateReplaceDepositForBurn(accountKeeper types.AccountKeeper, bankKeeper
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           sendMsg,
-			MsgType:       sendMsg.Type(),
 			Context:       ctx,
 			SimAccount:    caller,
 			AccountKeeper: accountKeeper,
@@ -687,7 +674,6 @@ func SimulateReplaceDepositForBurn(accountKeeper types.AccountKeeper, bankKeeper
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           replaceMsg,
-			MsgType:       replaceMsg.Type(),
 			Context:       ctx,
 			SimAccount:    caller,
 			AccountKeeper: accountKeeper,
@@ -701,7 +687,7 @@ func SimulateReplaceDepositForBurn(accountKeeper types.AccountKeeper, bankKeeper
 	}
 }
 
-func SimulateReplaceMessage(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateReplaceMessage(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, chainID string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		if paused, _ := keeper.GetSendingAndReceivingMessagesPaused(ctx); paused.Paused {
 			return simTypes.NoOpMsg(types.ModuleName, "", ""), nil, nil
@@ -769,7 +755,6 @@ func SimulateReplaceMessage(accountKeeper types.AccountKeeper, keeper *keeper.Ke
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           sendMsg,
-			MsgType:       sendMsg.Type(),
 			Context:       ctx,
 			SimAccount:    caller,
 			AccountKeeper: accountKeeper,
@@ -781,7 +766,6 @@ func SimulateReplaceMessage(accountKeeper types.AccountKeeper, keeper *keeper.Ke
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           replaceMsg,
-			MsgType:       replaceMsg.Type(),
 			Context:       ctx,
 			SimAccount:    caller,
 			AccountKeeper: accountKeeper,
@@ -795,7 +779,7 @@ func SimulateReplaceMessage(accountKeeper types.AccountKeeper, keeper *keeper.Ke
 	}
 }
 
-func SimulateSendMessage(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateSendMessage(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, chainID string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		if paused, _ := keeper.GetSendingAndReceivingMessagesPaused(ctx); paused.Paused {
 			return simTypes.NoOpMsg(types.ModuleName, "", ""), nil, nil
@@ -825,7 +809,6 @@ func SimulateSendMessage(accountKeeper types.AccountKeeper, keeper *keeper.Keepe
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       msg.Type(),
 			Context:       ctx,
 			SimAccount:    caller,
 			AccountKeeper: accountKeeper,
@@ -836,7 +819,7 @@ func SimulateSendMessage(accountKeeper types.AccountKeeper, keeper *keeper.Keepe
 	}
 }
 
-func SimulateSendMessageWithCaller(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateSendMessageWithCaller(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, chainID string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		if paused, _ := keeper.GetSendingAndReceivingMessagesPaused(ctx); paused.Paused {
 			return simTypes.NoOpMsg(types.ModuleName, "", ""), nil, nil
@@ -869,7 +852,6 @@ func SimulateSendMessageWithCaller(accountKeeper types.AccountKeeper, keeper *ke
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       msg.Type(),
 			Context:       ctx,
 			SimAccount:    caller,
 			AccountKeeper: accountKeeper,
@@ -880,7 +862,7 @@ func SimulateSendMessageWithCaller(accountKeeper types.AccountKeeper, keeper *ke
 	}
 }
 
-func SimulateUnlinkTokenPair(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateUnlinkTokenPair(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, chainID string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		linkFunc := SimulateLinkTokenPair(accountKeeper, keeper)
 		if operationMsg, futureOperations, err := linkFunc(r, app, ctx, accounts, chainID); err != nil {
@@ -908,7 +890,6 @@ func SimulateUnlinkTokenPair(accountKeeper types.AccountKeeper, keeper *keeper.K
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       msg.Type(),
 			Context:       ctx,
 			SimAccount:    tokenController,
 			AccountKeeper: accountKeeper,
@@ -919,7 +900,7 @@ func SimulateUnlinkTokenPair(accountKeeper types.AccountKeeper, keeper *keeper.K
 	}
 }
 
-func SimulateUpdateOwner(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateUpdateOwner(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, _ string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		owner, ok := simTypes.FindAccount(accounts, sdk.MustAccAddressFromBech32(keeper.GetOwner(ctx)))
 		if !ok {
@@ -939,7 +920,6 @@ func SimulateUpdateOwner(accountKeeper types.AccountKeeper, keeper *keeper.Keepe
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           updateMsg,
-			MsgType:       updateMsg.Type(),
 			Context:       ctx,
 			SimAccount:    owner,
 			AccountKeeper: accountKeeper,
@@ -950,7 +930,7 @@ func SimulateUpdateOwner(accountKeeper types.AccountKeeper, keeper *keeper.Keepe
 	}
 }
 
-func SimulateUpdateAttesterManager(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateUpdateAttesterManager(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, _ string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		owner, ok := simTypes.FindAccount(accounts, sdk.MustAccAddressFromBech32(keeper.GetOwner(ctx)))
 		if !ok {
@@ -970,7 +950,6 @@ func SimulateUpdateAttesterManager(accountKeeper types.AccountKeeper, keeper *ke
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       msg.Type(),
 			Context:       ctx,
 			SimAccount:    owner,
 			AccountKeeper: accountKeeper,
@@ -981,7 +960,7 @@ func SimulateUpdateAttesterManager(accountKeeper types.AccountKeeper, keeper *ke
 	}
 }
 
-func SimulateUpdateTokenController(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateUpdateTokenController(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, _ string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		owner, ok := simTypes.FindAccount(accounts, sdk.MustAccAddressFromBech32(keeper.GetOwner(ctx)))
 		if !ok {
@@ -1001,7 +980,6 @@ func SimulateUpdateTokenController(accountKeeper types.AccountKeeper, keeper *ke
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       msg.Type(),
 			Context:       ctx,
 			SimAccount:    owner,
 			AccountKeeper: accountKeeper,
@@ -1012,7 +990,7 @@ func SimulateUpdateTokenController(accountKeeper types.AccountKeeper, keeper *ke
 	}
 }
 
-func SimulateUpdatePauser(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateUpdatePauser(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, _ string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		owner, ok := simTypes.FindAccount(accounts, sdk.MustAccAddressFromBech32(keeper.GetOwner(ctx)))
 		if !ok {
@@ -1032,7 +1010,6 @@ func SimulateUpdatePauser(accountKeeper types.AccountKeeper, keeper *keeper.Keep
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       msg.Type(),
 			Context:       ctx,
 			SimAccount:    owner,
 			AccountKeeper: accountKeeper,
@@ -1043,7 +1020,7 @@ func SimulateUpdatePauser(accountKeeper types.AccountKeeper, keeper *keeper.Keep
 	}
 }
 
-func SimulateUpdateMaxMessageBodySize(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateUpdateMaxMessageBodySize(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, _ string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		size := r.Int63n(10_000) // up to 10KB
 
@@ -1063,7 +1040,6 @@ func SimulateUpdateMaxMessageBodySize(accountKeeper types.AccountKeeper, keeper 
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       msg.Type(),
 			Context:       ctx,
 			SimAccount:    owner,
 			AccountKeeper: accountKeeper,
@@ -1074,7 +1050,7 @@ func SimulateUpdateMaxMessageBodySize(accountKeeper types.AccountKeeper, keeper 
 	}
 }
 
-func SimulateSetMaxBurnAmountPerMessage(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateSetMaxBurnAmountPerMessage(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, _ string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		tokenController, ok := simTypes.FindAccount(accounts, sdk.MustAccAddressFromBech32(keeper.GetTokenController(ctx)))
 		if !ok {
@@ -1093,7 +1069,6 @@ func SimulateSetMaxBurnAmountPerMessage(accountKeeper types.AccountKeeper, keepe
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       msg.Type(),
 			Context:       ctx,
 			SimAccount:    tokenController,
 			AccountKeeper: accountKeeper,
@@ -1104,7 +1079,7 @@ func SimulateSetMaxBurnAmountPerMessage(accountKeeper types.AccountKeeper, keepe
 	}
 }
 
-func SimulateUpdateSignatureThreshold(accountKeeper types.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
+func SimulateUpdateSignatureThreshold(accountKeeper simulation.AccountKeeper, keeper *keeper.Keeper) simTypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accounts []simTypes.Account, chainID string) (simTypes.OperationMsg, []simTypes.FutureOperation, error) {
 		for i := 0; i < r.Intn(101); i++ {
 			enableFunc := SimulateEnableAttester(accountKeeper, keeper)
@@ -1134,7 +1109,6 @@ func SimulateUpdateSignatureThreshold(accountKeeper types.AccountKeeper, keeper 
 			TxGen:         params.MakeTestEncodingConfig().TxConfig,
 			Cdc:           nil,
 			Msg:           msg,
-			MsgType:       msg.Type(),
 			Context:       ctx,
 			SimAccount:    attesterManager,
 			AccountKeeper: accountKeeper,

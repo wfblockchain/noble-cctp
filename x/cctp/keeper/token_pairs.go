@@ -16,9 +16,10 @@
 package keeper
 
 import (
-	"github.com/cosmos/cosmos-sdk/store/prefix"
+	"cosmossdk.io/store/prefix"
 	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 
+	sdktypes "cosmossdk.io/store/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
@@ -65,7 +66,7 @@ func (k Keeper) DeleteTokenPair(
 // GetAllTokenPairs returns all token pairs
 func (k Keeper) GetAllTokenPairs(ctx sdk.Context) (list []types.TokenPair) {
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.TokenPairKeyPrefix))
-	iterator := sdk.KVStorePrefixIterator(store, []byte{})
+	iterator := sdktypes.KVStorePrefixIterator(store, []byte{})
 
 	defer iterator.Close()
 

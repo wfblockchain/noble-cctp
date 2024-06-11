@@ -16,9 +16,10 @@
 package keeper
 
 import (
-	"github.com/cosmos/cosmos-sdk/store/prefix"
+	"cosmossdk.io/store/prefix"
 	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 
+	sdktypes "cosmossdk.io/store/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
@@ -38,7 +39,7 @@ func (k Keeper) SetUsedNonce(ctx sdk.Context, nonce types.Nonce) {
 // GetAllUsedNonces returns all UsedNonces
 func (k Keeper) GetAllUsedNonces(ctx sdk.Context) (list []types.Nonce) {
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.UsedNonceKeyPrefix))
-	iterator := sdk.KVStorePrefixIterator(store, []byte{})
+	iterator := sdktypes.KVStorePrefixIterator(store, []byte{})
 
 	defer iterator.Close()
 

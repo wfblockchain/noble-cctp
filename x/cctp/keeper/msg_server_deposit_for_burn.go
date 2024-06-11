@@ -92,7 +92,7 @@ func (k msgServer) depositForBurn(
 	}
 
 	// burn coins
-	coin := sdk.NewCoin(burnToken, sdk.NewIntFromBigInt(amount.BigInt()))
+	coin := sdk.NewCoin(burnToken, math.NewIntFromBigInt(amount.BigInt()))
 
 	err := k.bank.SendCoinsFromAccountToModule(ctx, sdk.MustAccAddressFromBech32(from), types.ModuleName, sdk.NewCoins(coin))
 	if err != nil {

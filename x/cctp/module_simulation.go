@@ -16,7 +16,6 @@
 package cctp
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	simTypes "github.com/cosmos/cosmos-sdk/types/simulation"
 	"github.com/wfblockchain/noble-cctp/x/cctp/simulation"
@@ -38,7 +37,7 @@ func (am AppModule) ProposalContents(_ module.SimulationState) []simTypes.Weight
 // 	return nil
 // }
 
-func (am AppModule) RegisterStoreDecoder(_ sdk.StoreDecoderRegistry) {}
+func (am AppModule) RegisterStoreDecoder(_ simTypes.StoreDecoderRegistry) {}
 
 func (am AppModule) WeightedOperations(simState module.SimulationState) []simTypes.WeightedOperation {
 	return simulation.WeightedOperations(simState.Cdc, am.accountKeeper, am.bankKeeper, am.keeper)

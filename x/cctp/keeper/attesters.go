@@ -16,9 +16,10 @@
 package keeper
 
 import (
-	"github.com/cosmos/cosmos-sdk/store/prefix"
+	"cosmossdk.io/store/prefix"
 	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 
+	sdktypes "cosmossdk.io/store/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
@@ -51,7 +52,7 @@ func (k Keeper) DeleteAttester(ctx sdk.Context, key string) {
 // GetAllAttesters returns all attesters
 func (k Keeper) GetAllAttesters(ctx sdk.Context) (list []types.Attester) {
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.AttesterKeyPrefix))
-	iterator := sdk.KVStorePrefixIterator(store, []byte{})
+	iterator := sdktypes.KVStorePrefixIterator(store, []byte{})
 
 	defer iterator.Close()
 

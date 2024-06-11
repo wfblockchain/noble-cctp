@@ -16,9 +16,10 @@
 package keeper
 
 import (
-	"github.com/cosmos/cosmos-sdk/store/prefix"
+	"cosmossdk.io/store/prefix"
 	"github.com/wfblockchain/noble-cctp/x/cctp/types"
 
+	sdktypes "cosmossdk.io/store/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
@@ -54,7 +55,7 @@ func (k Keeper) DeleteRemoteTokenMessenger(
 // GetRemoteTokenMessengers returns all remote token messengers
 func (k Keeper) GetRemoteTokenMessengers(ctx sdk.Context) (list []types.RemoteTokenMessenger) {
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.RemoteTokenMessengerKeyPrefix))
-	iterator := sdk.KVStorePrefixIterator(store, []byte{})
+	iterator := sdktypes.KVStorePrefixIterator(store, []byte{})
 
 	defer iterator.Close()
 
