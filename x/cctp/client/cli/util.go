@@ -17,8 +17,6 @@ package cli
 
 import (
 	"errors"
-
-	"github.com/cosmos/btcutil/base58"
 	"github.com/ethereum/go-ethereum/common"
 )
 
@@ -30,7 +28,7 @@ func parseAddress(address string) ([]byte, error) {
 		return leftPadBytes(bz)
 	}
 
-	bz := base58.Decode(address)
+	bz := common.FromHex(address)
 	return leftPadBytes(bz)
 }
 
