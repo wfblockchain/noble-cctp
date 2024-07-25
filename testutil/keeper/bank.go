@@ -16,6 +16,7 @@
 package keeper
 
 import (
+	"context"
 	"errors"
 
 	"cosmossdk.io/math"
@@ -25,31 +26,64 @@ import (
 
 type MockBankKeeper struct{}
 
-func (MockBankKeeper) SpendableCoins(ctx sdk.Context, addr sdk.AccAddress) sdk.Coins {
+type MockBankKeeper2 struct{}
+
+func (MockBankKeeper) SpendableCoins(ctx context.Context, addr sdk.AccAddress) sdk.Coins {
 	return nil
 }
 
-func (MockBankKeeper) MintCoins(ctx sdk.Context, moduleName string, amt sdk.Coins) error {
+func (MockBankKeeper) MintCoins(ctx context.Context, moduleName string, amt sdk.Coins) error {
 	return nil
 }
 
-func (MockBankKeeper) BurnCoins(ctx sdk.Context, moduleName string, amt sdk.Coins) error {
+func (MockBankKeeper) BurnCoins(ctx context.Context, moduleName string, amt sdk.Coins) error {
 	return nil
 }
 
-func (MockBankKeeper) SendCoinsFromModuleToAccount(ctx sdk.Context, senderModule string, recipientAddr sdk.AccAddress, amt sdk.Coins) error {
+func (MockBankKeeper) SendCoinsFromModuleToAccount(ctx context.Context, senderModule string, recipientAddr sdk.AccAddress, amt sdk.Coins) error {
 	return nil
 }
 
-func (MockBankKeeper) SendCoinsFromAccountToModule(ctx sdk.Context, senderAddr sdk.AccAddress, recipientModule string, amt sdk.Coins) error {
+func (MockBankKeeper) SendCoinsFromAccountToModule(ctx context.Context, senderAddr sdk.AccAddress, recipientModule string, amt sdk.Coins) error {
 	return nil
 }
 
-func (MockBankKeeper) GetDenomMetaData(ctx sdk.Context, denom string) (banktypes.Metadata, bool) {
+func (MockBankKeeper) GetDenomMetaData(ctx context.Context, denom string) (banktypes.Metadata, bool) {
 	return banktypes.Metadata{}, true
 }
 
-func (MockBankKeeper) GetBalance(ctx sdk.Context, addr sdk.AccAddress, denom string) sdk.Coin {
+func (MockBankKeeper) GetBalance(ctx context.Context, addr sdk.AccAddress, denom string) sdk.Coin {
+	return sdk.Coin{
+		Denom:  "uusdc",
+		Amount: math.Int{},
+	}
+}
+
+func (MockBankKeeper2) SpendableCoins(ctx sdk.Context, addr sdk.AccAddress) sdk.Coins {
+	return nil
+}
+
+func (MockBankKeeper2) MintCoins(ctx sdk.Context, moduleName string, amt sdk.Coins) error {
+	return nil
+}
+
+func (MockBankKeeper2) BurnCoins(ctx sdk.Context, moduleName string, amt sdk.Coins) error {
+	return nil
+}
+
+func (MockBankKeeper2) SendCoinsFromModuleToAccount(ctx sdk.Context, senderModule string, recipientAddr sdk.AccAddress, amt sdk.Coins) error {
+	return nil
+}
+
+func (MockBankKeeper2) SendCoinsFromAccountToModule(ctx sdk.Context, senderAddr sdk.AccAddress, recipientModule string, amt sdk.Coins) error {
+	return nil
+}
+
+func (MockBankKeeper2) GetDenomMetaData(ctx sdk.Context, denom string) (banktypes.Metadata, bool) {
+	return banktypes.Metadata{}, true
+}
+
+func (MockBankKeeper2) GetBalance(ctx context.Context, addr sdk.AccAddress, denom string) sdk.Coin {
 	return sdk.Coin{
 		Denom:  "uusdc",
 		Amount: math.Int{},
@@ -84,7 +118,7 @@ func (ErrBankKeeper) GetDenomMetaData(ctx sdk.Context, denom string) (banktypes.
 	return banktypes.Metadata{}, true
 }
 
-func (ErrBankKeeper) GetBalance(ctx sdk.Context, addr sdk.AccAddress, denom string) sdk.Coin {
+func (ErrBankKeeper) GetBalance(ctx context.Context, addr sdk.AccAddress, denom string) sdk.Coin {
 	return sdk.Coin{
 		Denom:  "uusdc",
 		Amount: math.Int{},

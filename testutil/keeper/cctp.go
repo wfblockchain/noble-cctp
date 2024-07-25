@@ -52,7 +52,7 @@ func CctpKeeperWithKey(t testing.TB, storeKey storetypes.StoreKey) (*keeper.Keep
 		cdc,
 		storeKey,
 		paramsSubspace,
-		MockBankKeeper{},
+		MockBankKeeper2{},
 		MockFiatTokenfactoryKeeper{},
 	)
 
@@ -112,7 +112,7 @@ func CctpKeeper(t testing.TB) (*keeper.Keeper, sdk.Context) {
 		cdc,
 		storeKey,
 		paramsSubspace,
-		MockBankKeeper{},
+		MockBankKeeper2{},
 		MockFiatTokenfactoryKeeper{},
 	)
 
@@ -153,7 +153,7 @@ func ErrCctpKeeper(t testing.TB) (*keeper.Keeper, sdk.Context) {
 		cdc,
 		storeKey,
 		paramsSubspace,
-		MockBankKeeper{},
+		MockBankKeeper2{},
 		MockErrFiatTokenfactoryKeeper{},
 	)
 
