@@ -59,40 +59,11 @@ func (MockBankKeeper) GetBalance(ctx context.Context, addr sdk.AccAddress, denom
 	}
 }
 
-func (MockBankKeeper2) SpendableCoins(ctx sdk.Context, addr sdk.AccAddress) sdk.Coins {
-	return nil
-}
-
-func (MockBankKeeper2) MintCoins(ctx sdk.Context, moduleName string, amt sdk.Coins) error {
-	return nil
-}
-
-func (MockBankKeeper2) BurnCoins(ctx sdk.Context, moduleName string, amt sdk.Coins) error {
-	return nil
-}
-
-func (MockBankKeeper2) SendCoinsFromModuleToAccount(ctx sdk.Context, senderModule string, recipientAddr sdk.AccAddress, amt sdk.Coins) error {
-	return nil
-}
-
-func (MockBankKeeper2) SendCoinsFromAccountToModule(ctx sdk.Context, senderAddr sdk.AccAddress, recipientModule string, amt sdk.Coins) error {
-	return nil
-}
-
-func (MockBankKeeper2) GetDenomMetaData(ctx sdk.Context, denom string) (banktypes.Metadata, bool) {
-	return banktypes.Metadata{}, true
-}
-
-func (MockBankKeeper2) GetBalance(ctx context.Context, addr sdk.AccAddress, denom string) sdk.Coin {
-	return sdk.Coin{
-		Denom:  "uusdc",
-		Amount: math.Int{},
-	}
-}
-
 //
 
 type ErrBankKeeper struct{}
+
+type ErrBankKeeper2 struct{}
 
 func (ErrBankKeeper) SpendableCoins(ctx sdk.Context, addr sdk.AccAddress) sdk.Coins {
 	return nil
@@ -119,6 +90,37 @@ func (ErrBankKeeper) GetDenomMetaData(ctx sdk.Context, denom string) (banktypes.
 }
 
 func (ErrBankKeeper) GetBalance(ctx context.Context, addr sdk.AccAddress, denom string) sdk.Coin {
+	return sdk.Coin{
+		Denom:  "uusdc",
+		Amount: math.Int{},
+	}
+}
+
+func (ErrBankKeeper2) SpendableCoins(ctx sdk.Context, addr sdk.AccAddress) sdk.Coins {
+	return nil
+}
+
+func (ErrBankKeeper2) MintCoins(ctx sdk.Context, moduleName string, amt sdk.Coins) error {
+	return nil
+}
+
+func (ErrBankKeeper2) BurnCoins(ctx sdk.Context, moduleName string, amt sdk.Coins) error {
+	return nil
+}
+
+func (ErrBankKeeper2) SendCoinsFromModuleToAccount(ctx sdk.Context, senderModule string, recipientAddr sdk.AccAddress, amt sdk.Coins) error {
+	return nil
+}
+
+func (ErrBankKeeper2) SendCoinsFromAccountToModule(ctx context.Context, senderAddr sdk.AccAddress, recipientModule string, amt sdk.Coins) error {
+	return errors.New("intentional error")
+}
+
+func (ErrBankKeeper2) GetDenomMetaData(ctx sdk.Context, denom string) (banktypes.Metadata, bool) {
+	return banktypes.Metadata{}, true
+}
+
+func (ErrBankKeeper2) GetBalance(ctx context.Context, addr sdk.AccAddress, denom string) sdk.Coin {
 	return sdk.Coin{
 		Denom:  "uusdc",
 		Amount: math.Int{},
