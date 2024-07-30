@@ -311,7 +311,7 @@ require (
 
 replace (
 	// use cosmos compatible ChainSafe/go-schnorrkel
-	cosmossdk.io/simapp => ../Documents/simapp
+	// cosmossdk.io/simapp => ../Documents/simapp
 	github.com/ChainSafe/go-schnorrkel => github.com/ChainSafe/go-schnorrkel v0.0.0-20200405005733-88cbf1b4c40d
 
 	// use cosmos flavored gogo/protobuf

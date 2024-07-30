@@ -18,11 +18,14 @@ syntax = "proto3";
 package circle.cctp.v1;
 
 import "gogoproto/gogo.proto";
+import "cosmos/msg/v1/msg.proto";
 
 option go_package = "github.com/wfblockchain/noble-cctp/x/cctp/types";
 
 // Msg defines the Msg service.
 service Msg {
+  option (cosmos.msg.v1.service) = true;
+
   rpc AcceptOwner(MsgAcceptOwner) returns (MsgAcceptOwnerResponse);
   rpc AddRemoteTokenMessenger(MsgAddRemoteTokenMessenger) returns (MsgAddRemoteTokenMessengerResponse);
   rpc DepositForBurn(MsgDepositForBurn) returns (MsgDepositForBurnResponse);
