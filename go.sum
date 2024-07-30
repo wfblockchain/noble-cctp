@@ -1637,6 +1637,8 @@ github.com/uudashr/gocognit v1.1.2 h1:l6BAEKJqQH2UpKAPKdMfZf5kE4W/2xk8pfU1OVLvni
 github.com/uudashr/gocognit v1.1.2/go.mod h1:aAVdLURqcanke8h3vg35BC++eseDm66Z7KmchI5et4k=
 github.com/wfblockchain/noble-fiattokenfactory v0.0.0-20240725123113-7b9497ef53e0 h1:npvF6lWEwwzMTl29PHemT78hJodoa+dBlF5zIG3qvRs=
 github.com/wfblockchain/noble-fiattokenfactory v0.0.0-20240725123113-7b9497ef53e0/go.mod h1:MhD0kPQn0XnBWKo5RsmUg2uUqR58RwTRiV5n1vD5VRU=
+github.com/wfblockchain/noble-fiattokenfactory v0.0.0-20240730103015-e998820bdf10 h1:7v2mDIzMQtrXeb6eqh4UM/21WwtBVFlOAte2mYB/x98=
+github.com/wfblockchain/noble-fiattokenfactory v0.0.0-20240730103015-e998820bdf10/go.mod h1:MhD0kPQn0XnBWKo5RsmUg2uUqR58RwTRiV5n1vD5VRU=
 github.com/xen0n/gosmopolitan v1.2.2 h1:/p2KTnMzwRexIW8GlKawsTWOxn7UHA+jCMF/V8HHtvU=
 github.com/xen0n/gosmopolitan v1.2.2/go.mod h1:7XX7Mj61uLYrj0qmeN0zi7XDon9JRAEhYQqAPLVNTeg=
 github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2/go.mod h1:UETIi67q53MR2AWcXfiuqkDkRtnGDLqkBTpCHuJHxtU=
