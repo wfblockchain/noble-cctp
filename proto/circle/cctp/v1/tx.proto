@@ -55,6 +55,7 @@ service Msg {
 
 // TODO add comments
 message MsgUpdateOwner {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   string new_owner = 2;
 }
@@ -62,6 +63,7 @@ message MsgUpdateOwner {
 message MsgUpdateOwnerResponse {}
 
 message MsgUpdateAttesterManager {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   string new_attester_manager = 2;
 }
@@ -69,6 +71,7 @@ message MsgUpdateAttesterManager {
 message MsgUpdateAttesterManagerResponse {}
 
 message MsgUpdateTokenController {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   string new_token_controller = 2;
 }
@@ -76,6 +79,7 @@ message MsgUpdateTokenController {
 message MsgUpdateTokenControllerResponse {}
 
 message MsgUpdatePauser {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   string new_pauser = 2;
 }
@@ -83,12 +87,14 @@ message MsgUpdatePauser {
 message MsgUpdatePauserResponse {}
 
 message MsgAcceptOwner {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
 }
 
 message MsgAcceptOwnerResponse {}
 
 message MsgEnableAttester {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   string attester = 2;
 }
@@ -96,6 +102,7 @@ message MsgEnableAttester {
 message MsgEnableAttesterResponse {}
 
 message MsgDisableAttester {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   string attester = 2;
 }
@@ -103,30 +110,35 @@ message MsgDisableAttester {
 message MsgDisableAttesterResponse {}
 
 message MsgPauseBurningAndMinting {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
 }
 
 message MsgPauseBurningAndMintingResponse {}
 
 message MsgUnpauseBurningAndMinting {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
 }
 
 message MsgUnpauseBurningAndMintingResponse {}
 
 message MsgPauseSendingAndReceivingMessages {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
 }
 
 message MsgPauseSendingAndReceivingMessagesResponse {}
 
 message MsgUnpauseSendingAndReceivingMessages {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
 }
 
 message MsgUnpauseSendingAndReceivingMessagesResponse {}
 
 message MsgUpdateMaxMessageBodySize {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   uint64 message_size = 2;
 }
@@ -134,6 +146,7 @@ message MsgUpdateMaxMessageBodySize {
 message MsgUpdateMaxMessageBodySizeResponse {}
 
 message MsgSetMaxBurnAmountPerMessage {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   string local_token = 2;
   string amount = 3 [
@@ -145,6 +158,7 @@ message MsgSetMaxBurnAmountPerMessage {
 message MsgSetMaxBurnAmountPerMessageResponse {}
 
 message MsgDepositForBurn {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   string amount = 2 [
     (gogoproto.customtype) = "cosmossdk.io/math.Int",
@@ -160,6 +174,7 @@ message MsgDepositForBurnResponse {
 }
 
 message MsgDepositForBurnWithCaller {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   string amount = 2 [
     (gogoproto.customtype) = "cosmossdk.io/math.Int",
@@ -176,6 +191,7 @@ message MsgDepositForBurnWithCallerResponse {
 }
 
 message MsgReplaceDepositForBurn {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   bytes original_message = 2;
   bytes original_attestation = 3;
@@ -186,6 +202,7 @@ message MsgReplaceDepositForBurn {
 message MsgReplaceDepositForBurnResponse {}
 
 message MsgReceiveMessage {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   bytes message = 2;
   bytes attestation = 3;
@@ -196,6 +213,7 @@ message MsgReceiveMessageResponse {
 }
 
 message MsgSendMessage {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   uint32 destination_domain = 2;
   bytes recipient = 3;
@@ -207,6 +225,7 @@ message MsgSendMessageResponse {
 }
 
 message MsgSendMessageWithCaller {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   uint32 destination_domain = 2;
   bytes recipient = 3;
@@ -219,6 +238,7 @@ message MsgSendMessageWithCallerResponse {
 }
 
 message MsgReplaceMessage {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   bytes original_message = 2;
   bytes original_attestation = 3;
@@ -229,6 +249,7 @@ message MsgReplaceMessage {
 message MsgReplaceMessageResponse {}
 
 message MsgUpdateSignatureThreshold {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   uint32 amount = 2;
 }
@@ -236,6 +257,7 @@ message MsgUpdateSignatureThreshold {
 message MsgUpdateSignatureThresholdResponse {}
 
 message MsgLinkTokenPair {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   uint32 remote_domain = 2;
   bytes remote_token = 3;
@@ -245,6 +267,7 @@ message MsgLinkTokenPair {
 message MsgLinkTokenPairResponse {}
 
 message MsgUnlinkTokenPair {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   uint32 remote_domain = 2;
   bytes remote_token = 3;
@@ -254,6 +277,7 @@ message MsgUnlinkTokenPair {
 message MsgUnlinkTokenPairResponse {}
 
 message MsgAddRemoteTokenMessenger {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   uint32 domain_id = 2;
   bytes address = 3;
@@ -262,6 +286,7 @@ message MsgAddRemoteTokenMessenger {
 message MsgAddRemoteTokenMessengerResponse {}
 
 message MsgRemoveRemoteTokenMessenger {
+  option (cosmos.msg.v1.signer) = "from";
   string from = 1;
   uint32 domain_id = 2;
 }
