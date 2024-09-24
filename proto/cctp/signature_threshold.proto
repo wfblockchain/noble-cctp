@@ -15,27 +15,15 @@
  */
 syntax = "proto3";
 
-package circle.cctp.v1;
-
-import "gogoproto/gogo.proto";
+package cctp;
 
 option go_package = "github.com/wfblockchain/noble-cctp/x/cctp/types";
 
 /**
- * Message format for BurnMessages
- * @param version the message body version
- * @param burn_token the burn token address on source domain as bytes32
- * @param mint_recipient the mint recipient address as bytes32
- * @param amount the burn amount
- * @param message_sender the message sender
+ * SignatureThreshold is the minimum amount of signatures required to attest to
+ * a message (the 'm' in a m/n multisig)
+ * @param amount the number of signatures required
  */
-message BurnMessage {
-  uint32 version = 1;
-  bytes burn_token = 2;
-  bytes mint_recipient = 3;
-  string amount = 4 [
-    (gogoproto.customtype) = "cosmossdk.io/math.Int",
-    (gogoproto.nullable) = false
-  ];
-  bytes message_sender = 5;
+message SignatureThreshold {
+  uint32 amount = 1;
 }

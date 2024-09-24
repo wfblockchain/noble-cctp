@@ -15,14 +15,14 @@
  */
 syntax = "proto3";
 
-package circle.cctp.v1;
+package cctp;
 
 option go_package = "github.com/wfblockchain/noble-cctp/x/cctp/types";
 
 /**
- * Message format for BurningAndMintingPaused
+ * Message format for SendingAndReceivingMessagesPaused
  * @param paused true if paused, false if not paused
  */
-message BurningAndMintingPaused {
+message SendingAndReceivingMessagesPaused {
   bool paused = 1;
 }

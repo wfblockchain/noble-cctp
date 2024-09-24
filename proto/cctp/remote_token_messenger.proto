@@ -15,23 +15,15 @@
  */
 syntax = "proto3";
 
-package circle.cctp.v1;
-
-import "gogoproto/gogo.proto";
+package cctp;
 
 option go_package = "github.com/wfblockchain/noble-cctp/x/cctp/types";
 
 /**
- * PerMessageBurnLimit is the maximum amount of a certain denom that can be
- * burned in an single burn
- * @param denom the denom
- * @param amount the amount that can be burned (in microunits).  An amount of
- * 1000000 uusdc is equivalent to 1USDC
+ * @param domain_id
+ * @param address
  */
-message PerMessageBurnLimit {
-  string denom = 1;
-  string amount = 2 [
-    (gogoproto.customtype) = "cosmossdk.io/math.Int",
-    (gogoproto.nullable) = false
-  ];
+message RemoteTokenMessenger {
+  uint32 domain_id = 1;
+  bytes address = 2;
 }

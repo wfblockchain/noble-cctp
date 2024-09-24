@@ -15,18 +15,14 @@
  */
 syntax = "proto3";
 
-package circle.cctp.v1;
+package cctp;
 
 option go_package = "github.com/wfblockchain/noble-cctp/x/cctp/types";
 
 /**
- * The Nonce type functions both to mark receipt of received messages and a
- * counter for sending messages
- * @param source_domain the domain id, used to mark used nonces for received
- * messages
- * @param nonce the nonce number
+ * Message format for BurningAndMintingPaused
+ * @param paused true if paused, false if not paused
  */
-message Nonce {
-  uint32 source_domain = 1;
-  uint64 nonce = 2;
+message MaxMessageBodySize {
+  uint64 amount = 1;
 }

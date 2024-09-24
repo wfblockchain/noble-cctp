@@ -15,17 +15,17 @@
  */
 syntax = "proto3";
 
-package circle.cctp.v1;
+package cctp;
 
-import "circle/cctp/v1/attester.proto";
-import "circle/cctp/v1/burning_and_minting_paused.proto";
-import "circle/cctp/v1/max_message_body_size.proto";
-import "circle/cctp/v1/nonce.proto";
-import "circle/cctp/v1/per_message_burn_limit.proto";
-import "circle/cctp/v1/remote_token_messenger.proto";
-import "circle/cctp/v1/sending_and_receiving_messages_paused.proto";
-import "circle/cctp/v1/signature_threshold.proto";
-import "circle/cctp/v1/token_pair.proto";
+import "cctp/attester.proto";
+import "cctp/burning_and_minting_paused.proto";
+import "cctp/max_message_body_size.proto";
+import "cctp/nonce.proto";
+import "cctp/per_message_burn_limit.proto";
+import "cctp/remote_token_messenger.proto";
+import "cctp/sending_and_receiving_messages_paused.proto";
+import "cctp/signature_threshold.proto";
+import "cctp/token_pair.proto";
 import "gogoproto/gogo.proto";
 
 option go_package = "github.com/wfblockchain/noble-cctp/x/cctp/types";

@@ -15,15 +15,14 @@
  */
 syntax = "proto3";
 
-package circle.cctp.v1;
+package cctp;
 
 option go_package = "github.com/wfblockchain/noble-cctp/x/cctp/types";
 
 /**
- * @param domain_id
- * @param address
+ * A public key used to verify message signatures
+ * @param attester ECDSA uncompressed public key, hex encoded
  */
-message RemoteTokenMessenger {
-  uint32 domain_id = 1;
-  bytes address = 2;
+message Attester {
+  string attester = 1;
 }

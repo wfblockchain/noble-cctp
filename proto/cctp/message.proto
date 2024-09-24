@@ -15,7 +15,7 @@
  */
 syntax = "proto3";
 
-package circle.cctp.v1;
+package cctp;
 
 option go_package = "github.com/wfblockchain/noble-cctp/x/cctp/types";
 

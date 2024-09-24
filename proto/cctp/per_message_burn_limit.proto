@@ -15,15 +15,23 @@
  */
 syntax = "proto3";
 
-package circle.cctp.v1;
+package cctp;
+
+import "gogoproto/gogo.proto";
 
 option go_package = "github.com/wfblockchain/noble-cctp/x/cctp/types";
 
 /**
- * SignatureThreshold is the minimum amount of signatures required to attest to
- * a message (the 'm' in a m/n multisig)
- * @param amount the number of signatures required
+ * PerMessageBurnLimit is the maximum amount of a certain denom that can be
+ * burned in an single burn
+ * @param denom the denom
+ * @param amount the amount that can be burned (in microunits).  An amount of
+ * 1000000 uusdc is equivalent to 1USDC
  */
-message SignatureThreshold {
-  uint32 amount = 1;
+message PerMessageBurnLimit {
+  string denom = 1;
+  string amount = 2 [
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
 }
