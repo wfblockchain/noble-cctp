@@ -49,10 +49,10 @@ func (msg *MsgEnableAttester) GetSigners() []sdk.AccAddress {
 	return []sdk.AccAddress{from}
 }
 
-func (msg *MsgEnableAttester) GetSignBytes() []byte {
-	bz := ModuleCdc.MustMarshalJSON(msg)
-	return sdk.MustSortJSON(bz)
-}
+// func (msg *MsgEnableAttester) GetSignBytes() []byte {
+// 	bz := ModuleCdc.MustMarshalJSON(msg)
+// 	return sdk.MustSortJSON(bz)
+// }
 
 func (msg *MsgEnableAttester) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.From)

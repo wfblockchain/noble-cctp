@@ -47,10 +47,10 @@ func (msg *MsgUnpauseSendingAndReceivingMessages) GetSigners() []sdk.AccAddress 
 	return []sdk.AccAddress{from}
 }
 
-func (msg *MsgUnpauseSendingAndReceivingMessages) GetSignBytes() []byte {
-	bz := ModuleCdc.MustMarshalJSON(msg)
-	return sdk.MustSortJSON(bz)
-}
+// func (msg *MsgUnpauseSendingAndReceivingMessages) GetSignBytes() []byte {
+// 	bz := ModuleCdc.MustMarshalJSON(msg)
+// 	return sdk.MustSortJSON(bz)
+// }
 
 func (msg *MsgUnpauseSendingAndReceivingMessages) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.From)

@@ -33,15 +33,15 @@ import (
 	cdctypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
+	xsim "github.com/cosmos/cosmos-sdk/x/simulation"
 	"github.com/wfblockchain/noble-cctp/x/cctp/client/cli"
 	"github.com/wfblockchain/noble-cctp/x/cctp/keeper"
 	"github.com/wfblockchain/noble-cctp/x/cctp/types"
-	xsim "github.com/cosmos/cosmos-sdk/x/simulation"
 )
 
 var (
-	_ module.AppModule      = AppModule{}
-	_ module.AppModuleBasic = AppModuleBasic{}
+// _ module.AppModule      = AppModule{}
+// _ module.AppModuleBasic = AppModuleBasic{}
 )
 
 // ----------------------------------------------------------------------------
@@ -62,10 +62,10 @@ func (AppModuleBasic) Name() string {
 	return types.ModuleName
 }
 
-// RegisterLegacyAminoCodec registers the amino codec for the module, which is used to marshal and unmarshal structs to/from []byte in order to persist them in the module's KVStore
-func (AppModuleBasic) RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {
-	types.RegisterLegacyAminoCodec(cdc)
-}
+// // RegisterLegacyAminoCodec registers the amino codec for the module, which is used to marshal and unmarshal structs to/from []byte in order to persist them in the module's KVStore
+// func (AppModuleBasic) RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {
+// 	types.RegisterLegacyAminoCodec(cdc)
+// }
 
 // RegisterInterfaces registers a module's interface types and their concrete implementations as proto.Message
 func (a AppModuleBasic) RegisterInterfaces(reg cdctypes.InterfaceRegistry) {

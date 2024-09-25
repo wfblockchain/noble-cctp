@@ -16,44 +16,43 @@
 package types
 
 import (
-	"github.com/cosmos/cosmos-sdk/codec"
 	cdctypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/msgservice"
 )
 
-func init() {
-	RegisterLegacyAminoCodec(amino)
-	amino.Seal()
-}
+// func init() {
+// 	RegisterLegacyAminoCodec(amino)
+// 	amino.Seal()
+// }
 
-func RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {
-	cdc.RegisterConcrete(&MsgAcceptOwner{}, "/cctp.Msg/AcceptOwner", nil)
-	cdc.RegisterConcrete(&MsgAddRemoteTokenMessenger{}, "/cctp.Msg/AddRemoteTokenMessenger", nil)
-	cdc.RegisterConcrete(&MsgDepositForBurn{}, "/cctp.Msg/DepositForBurn", nil)
-	cdc.RegisterConcrete(&MsgDepositForBurnWithCaller{}, "/cctp.Msg/DepositForBurnWithCaller", nil)
-	cdc.RegisterConcrete(&MsgDisableAttester{}, "/cctp.Msg/DisableAttester", nil)
-	cdc.RegisterConcrete(&MsgEnableAttester{}, "/cctp.Msg/EnableAttester", nil)
-	cdc.RegisterConcrete(&MsgLinkTokenPair{}, "/cctp.Msg/LinkTokenPair", nil)
-	cdc.RegisterConcrete(&MsgPauseBurningAndMinting{}, "/cctp.Msg/PauseBurningAndMinting", nil)
-	cdc.RegisterConcrete(&MsgPauseSendingAndReceivingMessages{}, "/cctp.Msg/PauseSendingAndReceivingMessages", nil)
-	cdc.RegisterConcrete(&MsgReceiveMessage{}, "/cctp.Msg/ReceiveMessage", nil)
-	cdc.RegisterConcrete(&MsgRemoveRemoteTokenMessenger{}, "/cctp.Msg/RemoveRemoteTokenMessenger", nil)
-	cdc.RegisterConcrete(&MsgReplaceDepositForBurn{}, "/cctp.Msg/ReplaceDepositForBurn", nil)
-	cdc.RegisterConcrete(&MsgReplaceMessage{}, "/cctp.Msg/ReplaceMessage", nil)
-	cdc.RegisterConcrete(&MsgSendMessage{}, "/cctp.Msg/SendMessage", nil)
-	cdc.RegisterConcrete(&MsgSendMessageWithCaller{}, "/cctp.Msg/SendMessageWithCaller", nil)
-	cdc.RegisterConcrete(&MsgUnlinkTokenPair{}, "/cctp.Msg/UnlinkTokenPair", nil)
-	cdc.RegisterConcrete(&MsgUnpauseBurningAndMinting{}, "/cctp.Msg/UnpauseBurningAndMinting", nil)
-	cdc.RegisterConcrete(&MsgUnpauseSendingAndReceivingMessages{}, "/cctp.Msg/UnpauseSendingAndReceivingMessages", nil)
-	cdc.RegisterConcrete(&MsgUpdateOwner{}, "/cctp.Msg/UpdateOwner", nil)
-	cdc.RegisterConcrete(&MsgUpdateAttesterManager{}, "/cctp.Msg/UpdateAttesterManager", nil)
-	cdc.RegisterConcrete(&MsgUpdateTokenController{}, "/cctp.Msg/UpdateTokenController", nil)
-	cdc.RegisterConcrete(&MsgUpdatePauser{}, "/cctp.Msg/UpdatePauser", nil)
-	cdc.RegisterConcrete(&MsgUpdateMaxMessageBodySize{}, "/cctp.Msg/UpdateMaxMessageBodySize", nil)
-	cdc.RegisterConcrete(&MsgSetMaxBurnAmountPerMessage{}, "/cctp.Msg/SetMaxBurnAmountPerMessage", nil)
-	cdc.RegisterConcrete(&MsgUpdateSignatureThreshold{}, "/cctp.Msg/UpdateSignatureThreshold", nil)
-}
+// func RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {
+// 	cdc.RegisterConcrete(&MsgAcceptOwner{}, "/cctp.Msg/AcceptOwner", nil)
+// 	cdc.RegisterConcrete(&MsgAddRemoteTokenMessenger{}, "/cctp.Msg/AddRemoteTokenMessenger", nil)
+// 	cdc.RegisterConcrete(&MsgDepositForBurn{}, "/cctp.Msg/DepositForBurn", nil)
+// 	cdc.RegisterConcrete(&MsgDepositForBurnWithCaller{}, "/cctp.Msg/DepositForBurnWithCaller", nil)
+// 	cdc.RegisterConcrete(&MsgDisableAttester{}, "/cctp.Msg/DisableAttester", nil)
+// 	cdc.RegisterConcrete(&MsgEnableAttester{}, "/cctp.Msg/EnableAttester", nil)
+// 	cdc.RegisterConcrete(&MsgLinkTokenPair{}, "/cctp.Msg/LinkTokenPair", nil)
+// 	cdc.RegisterConcrete(&MsgPauseBurningAndMinting{}, "/cctp.Msg/PauseBurningAndMinting", nil)
+// 	cdc.RegisterConcrete(&MsgPauseSendingAndReceivingMessages{}, "/cctp.Msg/PauseSendingAndReceivingMessages", nil)
+// 	cdc.RegisterConcrete(&MsgReceiveMessage{}, "/cctp.Msg/ReceiveMessage", nil)
+// 	cdc.RegisterConcrete(&MsgRemoveRemoteTokenMessenger{}, "/cctp.Msg/RemoveRemoteTokenMessenger", nil)
+// 	cdc.RegisterConcrete(&MsgReplaceDepositForBurn{}, "/cctp.Msg/ReplaceDepositForBurn", nil)
+// 	cdc.RegisterConcrete(&MsgReplaceMessage{}, "/cctp.Msg/ReplaceMessage", nil)
+// 	cdc.RegisterConcrete(&MsgSendMessage{}, "/cctp.Msg/SendMessage", nil)
+// 	cdc.RegisterConcrete(&MsgSendMessageWithCaller{}, "/cctp.Msg/SendMessageWithCaller", nil)
+// 	cdc.RegisterConcrete(&MsgUnlinkTokenPair{}, "/cctp.Msg/UnlinkTokenPair", nil)
+// 	cdc.RegisterConcrete(&MsgUnpauseBurningAndMinting{}, "/cctp.Msg/UnpauseBurningAndMinting", nil)
+// 	cdc.RegisterConcrete(&MsgUnpauseSendingAndReceivingMessages{}, "/cctp.Msg/UnpauseSendingAndReceivingMessages", nil)
+// 	cdc.RegisterConcrete(&MsgUpdateOwner{}, "/cctp.Msg/UpdateOwner", nil)
+// 	cdc.RegisterConcrete(&MsgUpdateAttesterManager{}, "/cctp.Msg/UpdateAttesterManager", nil)
+// 	cdc.RegisterConcrete(&MsgUpdateTokenController{}, "/cctp.Msg/UpdateTokenController", nil)
+// 	cdc.RegisterConcrete(&MsgUpdatePauser{}, "/cctp.Msg/UpdatePauser", nil)
+// 	cdc.RegisterConcrete(&MsgUpdateMaxMessageBodySize{}, "/cctp.Msg/UpdateMaxMessageBodySize", nil)
+// 	cdc.RegisterConcrete(&MsgSetMaxBurnAmountPerMessage{}, "/cctp.Msg/SetMaxBurnAmountPerMessage", nil)
+// 	cdc.RegisterConcrete(&MsgUpdateSignatureThreshold{}, "/cctp.Msg/UpdateSignatureThreshold", nil)
+// }
 
 func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	registry.RegisterImplementations((*sdk.Msg)(nil),
@@ -87,7 +86,7 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	msgservice.RegisterMsgServiceDesc(registry, &_Msg_serviceDesc)
 }
 
-var (
-	amino     = codec.NewLegacyAmino()
-	ModuleCdc = codec.NewProtoCodec(cdctypes.NewInterfaceRegistry())
-)
+// var (
+// 	amino     = codec.NewLegacyAmino()
+// 	ModuleCdc = codec.NewProtoCodec(cdctypes.NewInterfaceRegistry())
+// )

@@ -48,10 +48,10 @@ func (msg *MsgUpdateMaxMessageBodySize) GetSigners() []sdk.AccAddress {
 	return []sdk.AccAddress{from}
 }
 
-func (msg *MsgUpdateMaxMessageBodySize) GetSignBytes() []byte {
-	bz := ModuleCdc.MustMarshalJSON(msg)
-	return sdk.MustSortJSON(bz)
-}
+// func (msg *MsgUpdateMaxMessageBodySize) GetSignBytes() []byte {
+// 	bz := ModuleCdc.MustMarshalJSON(msg)
+// 	return sdk.MustSortJSON(bz)
+// }
 
 func (msg *MsgUpdateMaxMessageBodySize) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.From)

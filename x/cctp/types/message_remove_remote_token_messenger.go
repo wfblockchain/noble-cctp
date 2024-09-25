@@ -48,10 +48,10 @@ func (msg *MsgRemoveRemoteTokenMessenger) GetSigners() []sdk.AccAddress {
 	return []sdk.AccAddress{from}
 }
 
-func (msg *MsgRemoveRemoteTokenMessenger) GetSignBytes() []byte {
-	bz := ModuleCdc.MustMarshalJSON(msg)
-	return sdk.MustSortJSON(bz)
-}
+// func (msg *MsgRemoveRemoteTokenMessenger) GetSignBytes() []byte {
+// 	bz := ModuleCdc.MustMarshalJSON(msg)
+// 	return sdk.MustSortJSON(bz)
+// }
 
 func (msg *MsgRemoveRemoteTokenMessenger) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.From)

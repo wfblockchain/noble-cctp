@@ -47,10 +47,10 @@ func (msg *MsgPauseBurningAndMinting) GetSigners() []sdk.AccAddress {
 	return []sdk.AccAddress{from}
 }
 
-func (msg *MsgPauseBurningAndMinting) GetSignBytes() []byte {
-	bz := ModuleCdc.MustMarshalJSON(msg)
-	return sdk.MustSortJSON(bz)
-}
+// func (msg *MsgPauseBurningAndMinting) GetSignBytes() []byte {
+// 	bz := ModuleCdc.MustMarshalJSON(msg)
+// 	return sdk.MustSortJSON(bz)
+// }
 
 func (msg *MsgPauseBurningAndMinting) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.From)

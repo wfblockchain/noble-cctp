@@ -48,10 +48,10 @@ func (msg *MsgUpdateSignatureThreshold) GetSigners() []sdk.AccAddress {
 	return []sdk.AccAddress{from}
 }
 
-func (msg *MsgUpdateSignatureThreshold) GetSignBytes() []byte {
-	bz := ModuleCdc.MustMarshalJSON(msg)
-	return sdk.MustSortJSON(bz)
-}
+// func (msg *MsgUpdateSignatureThreshold) GetSignBytes() []byte {
+// 	bz := ModuleCdc.MustMarshalJSON(msg)
+// 	return sdk.MustSortJSON(bz)
+// }
 
 func (msg *MsgUpdateSignatureThreshold) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.From)
